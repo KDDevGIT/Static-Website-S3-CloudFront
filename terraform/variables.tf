@@ -10,3 +10,15 @@ variable "aws_region" {
   default = "us-west-1"
 }
 
+variable "website_index" {
+  description = "Default Index File"
+  type = string
+  default = "index.html"
+}
+
+variable "website_error" {
+  description = "Default Error File"
+  type = string
+  default = "error.html"
+}
+
