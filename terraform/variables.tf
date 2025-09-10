@@ -22,3 +22,17 @@ variable "website_error" {
   default = "error.html"
 }
 
+variable "default_ttl" {
+  description = "Default TTL for CloudFront Objects"
+  type = number
+  default = 3600
+}
+
+variable "price_class" {
+  description = "CloudFront Price Class"
+  type = string
+  default = "PriceClass_100"
+}
+
+
+
