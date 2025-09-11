@@ -21,3 +21,17 @@ resource "aws_s3_bucket_public_access_block" "site" {
   ignore_public_acls = true 
   restrict_public_buckets = true 
 }
+
+# Local files
+locals {
+  site_path = "${path.module}/../site"
+}
+
+data "local_file" "index" {
+  filename = "${local.site_path}/${var.website_index}"
+}
+
+data "local_file" "error" {
+  filename = "${local.site_path}/${var.website_error}"
+}
+
