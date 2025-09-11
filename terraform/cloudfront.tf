@@ -7,3 +7,11 @@ resource "aws_cloudfront_origin_access_control" "oac" {
   signing_protocol = "sigv4"
 }
 
+resource "aws_cloudfront_distribution" "this" {
+  enabled = true 
+  is_ipv6_enabled = true 
+  comment = "${var.project_name} static site"
+  price_class = var.price_class 
+  aliases = var.aliases
+}
+

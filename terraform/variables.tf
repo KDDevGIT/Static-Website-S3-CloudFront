@@ -34,5 +34,9 @@ variable "price_class" {
   default = "PriceClass_100"
 }
 
-
+variable "aliases" {
+  description = "Alt. Domain names for CloudFront"
+  type = list(string)
+  default = []
+}
 
