@@ -11,12 +11,16 @@ resource "aws_cloudfront_distribution" "this" {
   enabled = true 
   is_ipv6_enabled = true 
   comment = "${var.project_name} static site"
-  price_class = var.price_class 
+  price_class = var.price_class
   aliases = var.aliases
 
-  origins {
-    domain_name = aws_s3_bucket.site.bucket_regional_domain_name 
+  origin {
+    domain_name = aws_s3_bucket.site.bucket_regional_domain_name
     origin_id = "s3-origin"
+    s3_origin_config {
+      origin_access_identity = ""
+    }
+
     origin_access_control_id = aws_cloudfront_origin_access_control.oac.id 
   }
   default_root_object = var.website_index
@@ -42,11 +46,11 @@ resource "aws_cloudfront_distribution" "this" {
     }
   }
   viewer_certificate {
-    cloudfront_default_certificate = true 
+    cloudfront_default_certificate = true
   }
   custom_error_response {
-    error_code = 404
-    response_code = 200
+    error_code = 404 
+    response_code = 200 
     response_page_path = "/${var.website_error}"
     error_caching_min_ttl = 0
   }
