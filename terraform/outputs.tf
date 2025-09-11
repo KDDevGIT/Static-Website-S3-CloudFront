@@ -8,3 +8,7 @@ output "cloudfront_domain_name" {
   description = "CloudFront Domain to Access Site"
 }
 
+output "distribution_id" {
+  value = aws_cloudfront_distribution.this.id 
+  description = "CloudFront Distribution ID"
+}
