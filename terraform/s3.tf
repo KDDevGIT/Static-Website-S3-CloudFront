@@ -35,3 +35,19 @@ data "local_file" "error" {
   filename = "${local.site_path}/${var.website_error}"
 }
 
+# S3 Object
+resource "aws_s3_object" "index" {
+  bucket = aws_s3_bucket.site.id 
+  key = var.website_index
+  content_type = "text/html"
+  source = data.local_file.index.filename
+  etag = filemd5(data.local_file.index.filename)
+}
+
+resource "aws_s3_object" "error" {
+  bucket = aws_s3_bucket.site.id 
+  key = var.website_error
+  content_type = "text/html"
+  source = data.local_file.error.filename
+  etag = filemd5(data.local_file.error.filename)
+}
